@@ -6,7 +6,7 @@
     <title>KISSR ENERGY | LIVE BOLDER</title>
     <style>
         /* ==========================================================================
-           1. RESET, CORE VARIABLES & FONTS
+           1. CORE SYSTEM ARCHITECTURE & PACKAGING THEME
            ========================================================================== */
         * {
             margin: 0;
@@ -16,550 +16,475 @@
         }
 
         :root {
-            --pink-flash: #ff1177;
-            --pink-glow: #ff55aa;
-            --pink-light: #f7e6e9;
-            --neon-yellow: #ffea00;
-            --black-ink: #000000;
-            --white-paper: #ffffff;
-            --font-impact: 'Impact', 'Arial Black', sans-serif;
-            --font-body: 'Arial', sans-serif;
-            --brutal-border: 4px solid var(--black-ink);
-            --brutal-shadow: 6px 6px 0px var(--black-ink);
+            --brand-pink: #e63780;
+            --deep-magenta: #ba1e5d;
+            --bg-cream: #f6e6e8;
+            --accent-yellow: #fff314;
+            --ink-black: #050505;
+            --paper-white: #ffffff;
+            --font-display: 'Impact', 'Arial Black', sans-serif;
+            --font-interface: 'Arial', sans-serif;
+            --ui-border: 4px solid var(--ink-black);
+            --ui-shadow: 6px 6px 0px var(--ink-black);
         }
 
         body {
-            background-color: var(--pink-light);
+            background-color: var(--bg-cream);
             background-image: 
-                radial-gradient(var(--pink-glow) 15%, transparent 16%),
-                radial-gradient(var(--pink-glow) 15%, transparent 16%);
-            background-size: 60px 60px;
-            background-position: 0 0, 30px 30px;
-            font-family: var(--font-impact);
-            color: var(--black-ink);
+                radial-gradient(var(--brand-pink) 12%, transparent 13%),
+                radial-gradient(var(--brand-pink) 12%, transparent 13%);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            font-family: var(--font-display);
+            color: var(--ink-black);
             overflow-x: hidden;
         }
 
-        /* Custom Scrollbar */
+        /* Smooth custom scrolling framework */
         ::-webkit-scrollbar {
-            width: 16px;
+            width: 14px;
         }
         ::-webkit-scrollbar-track {
-            background: var(--black-ink);
+            background: var(--ink-black);
         }
         ::-webkit-scrollbar-thumb {
-            background: var(--pink-flash);
-            border: 4px solid var(--black-ink);
+            background: var(--brand-pink);
+            border: 3px solid var(--ink-black);
         }
 
         /* ==========================================================================
-           2. GLOBAL ANIMATIONS & KEYFRAMES
+           2. ANIMATION INFRASTRUCTURE
            ========================================================================== */
-        @keyframes lightningStrike {
-            0%, 100% { opacity: 0.1; transform: scale(1) skewX(-5deg); }
-            50% { opacity: 0.8; transform: scale(1.05) skewX(-5deg); filter: drop-shadow(0 0 15px var(--neon-yellow)); }
-        }
-
-        @keyframes marquee {
+        @keyframes dynamicMarquee {
             0% { transform: translateX(0%); }
             100% { transform: translateX(-50%); }
         }
 
-        @keyframes floatCan {
-            0%, 100% { transform: translateY(0) rotate(2deg); }
-            50% { transform: translateY(-20px) rotate(-2deg); }
+        @keyframes microFloat {
+            0%, 100% { transform: translateY(0px) rotate(1deg); }
+            50% { transform: translateY(-12px) rotate(-1deg); }
         }
 
-        @keyframes glitchText {
-            0% { transform: translate(0); text-shadow: 4px 4px 0px var(--black-ink); }
-            20% { transform: translate(-2px, 2px); text-shadow: 4px -4px 0px var(--pink-flash); }
-            40% { transform: translate(2px, -2px); text-shadow: -4px 4px 0px var(--neon-yellow); }
-            60% { transform: translate(-1px, -1px); text-shadow: 4px 4px 0px var(--black-ink); }
-            100% { transform: translate(0); text-shadow: 4px 4px 0px var(--black-ink); }
+        @keyframes lightningFlicker {
+            0%, 100% { opacity: 0.15; transform: scale(1); }
+            50% { opacity: 0.45; transform: scale(1.05); filter: drop-shadow(0 0 10px var(--brand-pink)); }
         }
 
         /* ==========================================================================
-           3. MARQUEE BANNER
+           3. RUNNING PACKAGING MARQUEE
            ========================================================================== */
-        .ticker-wrap {
-            background: var(--black-ink);
-            border-bottom: 6px solid var(--pink-flash);
+        .marquee-container {
+            background: var(--ink-black);
+            border-bottom: 5px solid var(--brand-pink);
             overflow: hidden;
             white-space: nowrap;
-            padding: 10px 0;
+            padding: 12px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .ticker {
+        .marquee-content {
             display: inline-block;
-            animation: marquee 20s linear infinite;
+            animation: dynamicMarquee 25s linear infinite;
         }
 
-        .ticker span {
-            color: var(--white-paper);
-            font-size: 1.5rem;
+        .marquee-content span {
+            color: var(--paper-white);
+            font-size: 1.4rem;
             letter-spacing: 2px;
-            padding-right: 50px;
+            padding-right: 40px;
             text-transform: uppercase;
         }
 
-        .ticker span::after {
+        .marquee-content span::after {
             content: '⚡';
-            margin-left: 50px;
-            color: var(--neon-yellow);
+            margin-left: 40px;
+            color: var(--accent-yellow);
         }
 
         /* ==========================================================================
-           4. HERO SECTION LAYOUT
+           4. VISUAL HERO CONFIGURATION
            ========================================================================== */
-        .hero-section {
+        .hero-layout {
             position: relative;
-            min-height: 100vh;
+            min-height: 90vh;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 0.8fr;
             align-items: center;
-            padding: 80px 5%;
+            padding: 60px 8%;
             gap: 40px;
-            overflow: hidden;
         }
 
-        .bg-lightning {
+        /* Background graphical vectors matching label layout */
+        .ambient-lightning {
             position: absolute;
-            font-size: 25rem;
-            color: var(--pink-flash);
+            font-size: 20rem;
+            color: var(--brand-pink);
             z-index: -1;
-            user-select: none;
             pointer-events: none;
-            animation: lightningStrike 4s infinite ease-in-out;
+            animation: lightningFlicker 3s infinite ease-in-out;
         }
-        .lt-1 { top: -50px; left: -50px; transform: rotate(15deg); }
-        .lt-2 { bottom: -100px; right: -50px; transform: rotate(-25deg); color: var(--neon-yellow); }
+        .alt-left { top: 10%; left: 2%; transform: rotate(12deg); }
+        .alt-right { bottom: 5%; right: 5%; transform: rotate(-18deg); color: var(--accent-yellow); }
 
-        .hero-left {
+        .hero-messaging {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             z-index: 10;
         }
 
-        .badge-comic {
-            background: var(--neon-yellow);
-            color: var(--black-ink);
-            font-size: 2.2rem;
-            padding: 10px 20px;
-            border: var(--brutal-border);
-            box-shadow: var(--brutal-shadow);
-            transform: rotate(-4deg);
-            margin-bottom: 40px;
-            text-transform: uppercase;
+        .comic-slogan-badge {
+            background: var(--accent-yellow);
+            color: var(--ink-black);
+            font-size: 2.4rem;
+            padding: 12px 24px;
+            border: var(--ui-border);
+            box-shadow: var(--ui-shadow);
+            transform: rotate(-3deg);
+            margin-bottom: 30px;
             line-height: 0.9;
+            letter-spacing: -1px;
         }
 
-        .logo-giant {
-            font-size: 9rem;
-            color: var(--pink-flash);
-            line-height: 0.75;
-            text-transform: uppercase;
-            letter-spacing: -4px;
-            animation: glitchText 3s infinite steps(2);
+        .brand-heading-main {
+            font-size: 8rem;
+            color: var(--brand-pink);
+            line-height: 0.8;
+            letter-spacing: -3px;
+            text-shadow: 4px 4px 0px var(--ink-black), -1px -1px 0px var(--ink-black), 1px -1px 0px var(--ink-black), -1px 1px 0px var(--ink-black);
             margin-bottom: 5px;
         }
 
-        .sublogo-giant {
-            font-size: 4.5rem;
-            color: var(--white-paper);
-            text-transform: uppercase;
+        .brand-heading-sub {
+            font-size: 4rem;
+            color: var(--paper-white);
             letter-spacing: -1px;
-            text-shadow: 4px 4px 0px var(--black-ink), -2px -2px 0px var(--black-ink), 2px -2px 0px var(--black-ink), -2px 2px 0px var(--black-ink);
-            margin-bottom: 25px;
+            text-shadow: 4px 4px 0px var(--ink-black), -2px -2px 0px var(--ink-black), 2px -2px 0px var(--ink-black), -2px 2px 0px var(--ink-black);
+            margin-bottom: 20px;
         }
 
-        .tagline-strip {
-            background: var(--white-paper);
-            color: var(--black-ink);
-            padding: 8px 30px;
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            border: var(--brutal-border);
-            box-shadow: var(--brutal-shadow);
-            transform: skewX(-12deg);
+        .can-tagline-bar {
+            background: var(--paper-white);
+            color: var(--ink-black);
+            padding: 6px 24px;
+            font-size: 1.4rem;
+            border: var(--ui-border);
+            box-shadow: var(--ui-shadow);
+            transform: skewX(-10deg);
+            margin-bottom: 35px;
+            letter-spacing: 1px;
+        }
+
+        .narrative-block {
+            font-family: var(--font-interface);
+            font-weight: 800;
+            font-size: 1.15rem;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border: var(--ui-border);
+            box-shadow: var(--ui-shadow);
+            max-width: 540px;
+            line-height: 1.5;
             margin-bottom: 35px;
         }
 
-        .product-description {
-            font-family: var(--font-body);
-            font-weight: 900;
-            font-size: 1.2rem;
-            color: var(--black-ink);
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border: var(--brutal-border);
-            box-shadow: var(--brutal-shadow);
-            border-radius: 4px;
-            max-width: 550px;
-            line-height: 1.5;
-            margin-bottom: 40px;
-        }
-
-        .btn-wrapper {
+        .cta-action-row {
             display: flex;
-            gap: 25px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
-        .brutal-btn {
-            background: var(--pink-flash);
-            color: var(--white-paper);
-            font-family: var(--font-impact);
-            font-size: 2rem;
-            padding: 15px 45px;
-            border: var(--brutal-border);
-            box-shadow: var(--brutal-shadow);
+        .bratalist-interactive-btn {
+            background: var(--brand-pink);
+            color: var(--paper-white);
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            padding: 14px 40px;
+            border: var(--ui-border);
+            box-shadow: var(--ui-shadow);
             text-transform: uppercase;
             cursor: pointer;
-            position: relative;
-            transition: 0.1s ease-in-out;
+            transition: 0.1s ease;
         }
 
-        .brutal-btn:hover {
-            transform: translate(3px, 3px);
-            box-shadow: 3px 3px 0px var(--black-ink);
-            background: var(--neon-yellow);
-            color: var(--black-ink);
+        .bratalist-interactive-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 4px 4px 0px var(--ink-black);
+            background: var(--accent-yellow);
+            color: var(--ink-black);
         }
 
-        .brutal-btn.alt-color {
-            background: var(--white-paper);
-            color: var(--black-ink);
-        }
-        .brutal-btn.alt-color:hover {
-            background: var(--pink-flash);
-            color: var(--white-paper);
+        .bratalist-interactive-btn.secondary-style {
+            background: var(--paper-white);
+            color: var(--ink-black);
         }
 
-        /* ==========================================================================
-           5. HERO RIGHT: THE ACTUAL CAN DESIGN CONTAINER
-           ========================================================================== */
-        .hero-right {
+        /* Can Media Wrapper Frame */
+        .hero-media {
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
             z-index: 10;
         }
 
-        .actual-can-display {
-            max-width: 340px;
+        .can-mockup-render {
+            max-width: 320px;
             width: 100%;
             height: auto;
             object-fit: contain;
-            filter: drop-shadow(15px 20px 0px rgba(0,0,0,0.2));
-            animation: floatCan 5s infinite ease-in-out;
-            cursor: pointer;
-            transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.5);
+            filter: drop-shadow(12px 16px 0px rgba(5,5,5,0.25));
+            animation: microFloat 4.5s infinite ease-in-out;
         }
 
         /* ==========================================================================
-           6. FLAVOR ZONE HEADLINE SPLIT
+           5. PRODUCT BREAKOUT SEGMENT
            ========================================================================== */
-        .flavor-divider-zone {
-            background: var(--black-ink);
-            border-top: 6px solid var(--black-ink);
-            border-bottom: 6px solid var(--pink-flash);
-            padding: 50px 20px;
+        .flavor-strip-divider {
+            background: var(--ink-black);
+            border-top: 5px solid var(--ink-black);
+            border-bottom: 5px solid var(--brand-pink);
+            padding: 40px 20px;
             text-align: center;
-            transform: skewY(-2deg);
+            transform: skewY(-1.5deg);
             margin: 40px 0;
         }
 
-        .flavor-divider-zone * {
-            transform: skewY(2deg);
+        .flavor-strip-divider-inner {
+            transform: skewY(1.5deg);
         }
 
-        .zone-title {
-            font-size: 5rem;
-            color: var(--neon-yellow);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 4px 4px 0px var(--pink-flash);
+        .flavor-headline {
+            font-size: 4.5rem;
+            color: var(--accent-yellow);
+            text-shadow: 3px 3px 0px var(--brand-pink);
             line-height: 1;
         }
 
-        .zone-subtitle {
-            font-size: 1.5rem;
-            color: var(--white-paper);
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            margin-top: 10px;
+        .flavor-subheadline {
+            font-size: 1.4rem;
+            color: var(--paper-white);
+            letter-spacing: 5px;
+            margin-top: 8px;
         }
 
         /* ==========================================================================
-           7. BRUTALIST GRID DESIGN
+           6. INGREDIENTS MATRIX (BRUTALIST CARDS)
            ========================================================================== */
-        .cards-container-grid {
-            max-width: 1300px;
+        .matrix-grid {
+            max-width: 1200px;
             margin: 60px auto;
             padding: 0 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
         }
 
-        .brutal-card {
-            background: var(--white-paper);
-            border: var(--brutal-border);
-            box-shadow: var(--brutal-shadow);
-            padding: 35px 25px;
+        .matrix-item-card {
+            background: var(--paper-white);
+            border: var(--ui-border);
+            box-shadow: var(--ui-shadow);
+            padding: 30px 20px;
             position: relative;
-            transition: 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .brutal-card:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 10px 10px 0px var(--black-ink);
-            background: #fff8fa;
-        }
-
-        .card-lightning-tag {
+        .matrix-badge-top {
             position: absolute;
-            top: -18px;
-            left: 20px;
-            background: var(--pink-flash);
-            color: var(--white-paper);
-            border: 3px solid var(--black-ink);
-            padding: 3px 12px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            box-shadow: 2px 2px 0px var(--black-ink);
+            top: -15px;
+            left: 15px;
+            background: var(--brand-pink);
+            color: var(--paper-white);
+            border: 2px solid var(--ink-black);
+            padding: 2px 10px;
+            font-size: 0.95rem;
+            box-shadow: 2px 2px 0px var(--ink-black);
         }
 
-        .brutal-card h3 {
-            font-size: 2rem;
-            text-transform: uppercase;
-            color: var(--black-ink);
-            margin-top: 5px;
-            margin-bottom: 15px;
-            border-bottom: 4px solid var(--black-ink);
-            padding-bottom: 5px;
+        .matrix-item-card h3 {
+            font-size: 1.7rem;
+            margin-top: 10px;
+            margin-bottom: 12px;
+            border-bottom: 3px solid var(--ink-black);
+            padding-bottom: 4px;
+            letter-spacing: -0.5px;
         }
 
-        .brutal-card p {
-            font-family: var(--font-body);
+        .matrix-item-card p {
+            font-family: var(--font-interface);
             font-weight: 700;
-            font-size: 1.05rem;
-            color: #222;
+            font-size: 0.95rem;
+            color: #333;
             line-height: 1.4;
         }
 
         /* ==========================================================================
-           8. RAW NUTRITION FACTS COMPONENT
+           7. PRODUCTION NUTRITIONAL SPECIFICATION COMPONENT
            ========================================================================== */
-        .nutrition-outer-box {
-            max-width: 480px;
+        .nutrition-wrapper-flex {
+            max-width: 1100px;
             margin: 80px auto;
             padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
         }
 
-        .nutrition-panel-card {
-            background: var(--white-paper);
-            border: 6px solid var(--black-ink);
-            box-shadow: 12px 12px 0px var(--black-ink);
-            padding: 25px;
-            color: var(--black-ink);
+        .panel-container-structural {
+            background: var(--paper-white);
+            border: 5px solid var(--ink-black);
+            box-shadow: 10px 10px 0px var(--ink-black);
+            padding: 24px;
         }
 
-        .nutrition-title {
-            font-size: 3.5rem;
-            text-transform: uppercase;
-            line-height: 0.85;
-            letter-spacing: -1px;
-            border-bottom: 12px solid var(--black-ink);
+        .panel-header-main {
+            font-size: 3.2rem;
+            line-height: 0.9;
+            border-bottom: 10px solid var(--ink-black);
             padding-bottom: 4px;
         }
 
-        .nutrition-subrow {
-            font-family: var(--font-body);
+        .panel-row-standard {
+            font-family: var(--font-interface);
             font-weight: 700;
-            font-size: 1.1rem;
-            border-bottom: 4px solid var(--black-ink);
-            padding: 6px 0;
+            font-size: 1rem;
+            border-bottom: 4px solid var(--ink-black);
+            padding: 5px 0;
         }
 
-        .nutrition-calories-row {
+        .panel-row-calories {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
             font-size: 1.8rem;
-            border-bottom: 8px solid var(--black-ink);
-            padding: 8px 0;
-            text-transform: uppercase;
+            border-bottom: 7px solid var(--ink-black);
+            padding: 6px 0;
         }
 
-        .nutrition-dv-header {
+        .panel-row-dv-marker {
             text-align: right;
-            font-family: var(--font-body);
+            font-family: var(--font-interface);
             font-weight: 900;
-            font-size: 0.85rem;
-            padding: 4px 0;
-            border-bottom: 2px solid var(--black-ink);
+            font-size: 0.8rem;
+            padding: 3px 0;
+            border-bottom: 1.5px solid var(--ink-black);
         }
 
-        .nutrition-data-line {
+        .panel-data-line {
             display: flex;
             justify-content: space-between;
-            font-family: var(--font-body);
+            font-family: var(--font-interface);
             font-weight: 700;
-            font-size: 1.05rem;
-            border-bottom: 2px solid var(--black-ink);
-            padding: 8px 0;
+            font-size: 1rem;
+            border-bottom: 1.5px solid var(--ink-black);
+            padding: 7px 0;
         }
 
-        .nutrition-data-line.indent {
+        .panel-data-line.sub-indent {
             padding-left: 20px;
         }
 
-        .nutrition-data-line strong {
+        .panel-data-line strong {
             font-weight: 900;
         }
 
-        .nutrition-footer-note {
-            font-family: var(--font-body);
+        .panel-footnote-text {
+            font-family: var(--font-interface);
             font-size: 0.75rem;
             font-weight: 700;
             line-height: 1.3;
-            padding-top: 15px;
+            padding-top: 12px;
             color: #444;
         }
 
-        /* ==========================================================================
-           9. BRAND CORE BENEFITS INFRASTRUCTURE (WHY KISSR)
-           ========================================================================== */
-        .why-kissr-container {
-            background: var(--white-paper);
-            border-top: 6px solid var(--black-ink);
-            border-bottom: 6px solid var(--black-ink);
-            padding: 80px 20px;
+        /* Ingredient block layout column */
+        .textual-ingredients-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 4px solid var(--ink-black);
+            padding: 30px;
+            font-family: var(--font-interface);
         }
 
-        .why-heading {
-            font-size: 4.5rem;
-            text-align: center;
-            text-transform: uppercase;
-            margin-bottom: 60px;
-            text-shadow: 3px 3px 0px var(--pink-flash);
-        }
-
-        .why-flex-layout {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .why-dashed-card {
-            flex: 1;
-            min-width: 300px;
-            max-width: 380px;
-            border: 4px dashed var(--pink-flash);
-            border-radius: 20px;
-            padding: 35px 25px;
-            background: var(--pink-light);
-            transition: transform 0.2s;
-        }
-
-        .why-dashed-card:hover {
-            transform: scale(1.02);
-        }
-
-        .why-dashed-card h4 {
+        .textual-ingredients-card h4 {
+            font-family: var(--font-display);
             font-size: 1.8rem;
-            text-transform: uppercase;
-            color: var(--black-ink);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 15px;
+            border-bottom: 3px solid var(--brand-pink);
+            padding-bottom: 4px;
         }
 
-        .why-dashed-card p {
-            font-family: var(--font-body);
+        .textual-ingredients-card p {
             font-weight: 700;
-            font-size: 1rem;
-            color: #444;
+            font-size: 0.95rem;
             line-height: 1.5;
+            color: #222;
+            margin-bottom: 20px;
         }
 
         /* ==========================================================================
-           10. DEEP BLACK INSULATED FOOTER
+           8. SYSTEM FOOTER TERMINATION
            ========================================================================== */
         footer {
-            background: var(--black-ink);
-            color: var(--white-paper);
-            padding: 60px 20px;
+            background: var(--ink-black);
+            color: var(--paper-white);
+            padding: 50px 20px;
             text-align: center;
-            border-top: 6px solid var(--pink-flash);
+            border-top: 5px solid var(--brand-pink);
         }
 
-        .footer-logo-text {
-            font-size: 3.5rem;
-            color: var(--pink-flash);
-            letter-spacing: -1px;
+        .footer-logo {
+            font-size: 3rem;
+            color: var(--brand-pink);
             margin-bottom: 5px;
         }
 
-        .footer-url {
-            font-size: 1.4rem;
-            color: var(--neon-yellow);
+        .footer-domain {
+            font-size: 1.3rem;
+            color: var(--accent-yellow);
             letter-spacing: 2px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
-        .footer-copyright {
-            font-family: var(--font-body);
+        .footer-legal {
+            font-family: var(--font-interface);
             font-weight: 700;
-            font-size: 0.9rem;
-            color: #777;
+            font-size: 0.85rem;
+            color: #666;
         }
 
         /* ==========================================================================
-           11. HIGHLY CRITICAL RESPONSIVE MEDIA BREAKPOINTS
+           9. MULTI-DEVICE RESPONSION MEDIA LAYOUTS
            ========================================================================== */
         @media (max-width: 1024px) {
-            .hero-section {
+            .hero-layout {
                 grid-template-columns: 1fr;
                 text-align: center;
                 padding-top: 40px;
             }
-            .hero-left {
+            .hero-messaging {
                 align-items: center;
             }
-            .logo-giant { font-size: 6.5rem; }
-            .sublogo-giant { font-size: 3.5rem; }
-            .product-description { margin-left: auto; margin-right: auto; }
-            .btn-wrapper { justify-content: center; width: 100%; }
-            .brutal-btn { width: 100%; max-width: 340px; }
-            .zone-title { font-size: 3.5rem; }
+            .brand-heading-main { font-size: 6rem; }
+            .brand-heading-sub { font-size: 3rem; }
+            .cta-action-row { justify-content: center; width: 100%; }
+            .bratalist-interactive-btn { width: 100%; max-width: 320px; }
+            .nutrition-wrapper-flex { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 480px) {
-            .logo-giant { font-size: 4.8rem; letter-spacing: -2px; }
-            .sublogo-giant { font-size: 2.6rem; }
-            .badge-comic { font-size: 1.6rem; }
-            .tagline-strip { font-size: 1.1rem; padding: 6px 15px; }
-            .actual-can-display { max-width: 260px; }
-            .zone-title { font-size: 2.6rem; }
-            .why-heading { font-size: 3rem; }
+            .brand-heading-main { font-size: 4.2rem; letter-spacing: -1px; }
+            .brand-heading-sub { font-size: 2.2rem; }
+            .comic-slogan-badge { font-size: 1.5rem; }
+            .can-tagline-bar { font-size: 1.1rem; }
+            .flavor-headline { font-size: 2.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="ticker-wrap">
-        <div class="ticker">
+    <div class="marquee-container">
+        <div class="marquee-content">
             <span>Clean Energy</span>
             <span>Real Ingredients</span>
             <span>Nothing Extra</span>
@@ -573,150 +498,132 @@
         </div>
     </div>
 
-    <section class="hero-section">
-        <div class="bg-lightning lt-1">⚡</div>
-        <div class="bg-lightning lt-2">⚡</div>
+    <section class="hero-layout">
+        <div class="ambient-lightning alt-left">⚡</div>
+        <div class="ambient-lightning alt-right">⚡</div>
 
-        <div class="hero-left">
-            <div class="badge-comic">KISS BETTER.<br>LIVE BOLDER.</div>
-            <h1 class="logo-giant">KISSR</h1>
-            <h2 class="sublogo-giant">ENERGY</h2>
-            <div class="tagline-strip">— ENERGY FOR EVERY KISS —</div>
+        <div class="hero-messaging">
+            <div class="comic-slogan-badge">KISS BETTER.<br>LIVE BOLDER.</div>
+            <h1 class="brand-heading-main">KISSR</h1>
+            <h2 class="brand-heading-sub">ENERGY</h2>
+            <div class="can-tagline-bar">— ENERGY FOR EVERY KISS —</div>
             
-            <p class="product-description">
-                Clean Energy. Real Ingredients. Nothing Extra. Plant-Based Caffeine with smooth focus, zero compromises, and undeniable taste. Built directly for individuals who live completely bold lives.
+            <p class="narrative-block">
+                Clean Energy. Real Ingredients. Nothing Extra. Engineered with premium plant-based caffeine loops, L-Theanine cognitive modulators, and refreshing natural components. Built for raw execution without the traditional chemical crash.
             </p>
 
-            <div class="btn-wrapper">
-                <button class="brutal-btn" onclick="triggerCanBooster()">COMING SOON</button>
-                <button class="brutal-btn alt-color" onclick="triggerCanBooster()">JOIN WAITLIST</button>
+            <div class="cta-action-row">
+                <button class="bratalist-interactive-btn">COMING SOON</button>
+                <button class="bratalist-interactive-btn secondary-style">JOIN WAITLIST</button>
             </div>
         </div>
 
-        <div class="hero-right">
-            <img src="can-design.png" alt="KISSR Vanilla Shake Can" class="actual-can-display" id="actualCan" onclick="triggerCanBooster()">
+        <div class="hero-media">
+            <img src="can-design.png" alt="KISSR Vanilla Shake Can Mockup" class="can-mockup-render" id="canRender">
         </div>
     </section>
 
-    <div class="flavor-divider-zone">
-        <h2 class="zone-title">VANILLA SHAKE FLAVOR PROFILE</h2>
-        <div class="zone-subtitle">250 ML • NATURALLY FORMULATED KICK</div>
+    <div class="flavor-strip-divider">
+        <div class="flavor-strip-divider-inner">
+            <h2 class="flavor-headline">VANILLA SHAKE</h2>
+            <div class="flavor-subheadline">NATURALLY FLAVORED • 250 ML</div>
+        </div>
     </div>
 
-    <section class="cards-container-grid">
-        <div class="brutal-card">
-            <div class="card-lightning-tag">100MG</div>
+    <section class="matrix-grid">
+        <div class="matrix-item-card">
+            <div class="matrix-badge-top">100MG</div>
             <h3>PLANT-BASED CAFFEINE</h3>
-            <p>Sourced cleanly straight from premium Green Coffee Bean Extract. Delivers continuous, high-output stamina loops without the synthetic chemical crashes.</p>
+            <p>Extracted organically directly from Green Coffee Beans to sustain pure performance thresholds without synthetic system anxiety.</p>
         </div>
-        <div class="brutal-card">
-            <div class="card-lightning-tag">100MG</div>
+        <div class="matrix-item-card">
+            <div class="matrix-badge-top">100MG</div>
             <h3>L-THEANINE FOCUS</h3>
-            <p>An amino acid matrix engineered to match perfectly with our caffeine dosage. Keeps your mental state targeted, clear, sharp, and entirely jitter-free.</p>
+            <p>An amino-acid isolate combined precisely to establish clean cognitive tracking, high-clarity processing, and continuous calm control.</p>
         </div>
-        <div class="brutal-card">
-            <div class="card-lightning-tag">VITAMINS</div>
-            <h3>B-COMPLEX POWER</h3>
-            <p>Loaded down completely with essential functional nutrients including Vitamins B3, B5, B6, and active Vitamin B12 for cellular metabolic support.</p>
+        <div class="matrix-item-card">
+            <div class="matrix-badge-top">100% DV</div>
+            <h3>B-COMPLEX METABOLISM</h3>
+            <p>Fully packed structural integration of Vitamin B3, B5, B6, and B12 maximizing intracellular energy pathway conversion loops.</p>
         </div>
-        <div class="brutal-card">
-            <div class="card-lightning-tag">0% SUGAR</div>
-            <h3>CLEAN COMPOSITION</h3>
-            <p>No heavy syrup additives, no industrial chemicals, and absolutely zero fillers. Sweetened naturally via high-grade Stevia Leaf extracts.</p>
-        </div>
-    </section>
-
-    <section class="why-kissr-container">
-        <h3 class="why-heading">WHY KISSR ENERGY?</h3>
-        <div class="why-flex-layout">
-            <div class="why-dashed-card">
-                <h4>✨ Clean Processing</h4>
-                <p>We actively refuse to compromise on the purity of ingredients. What goes inside the can is completely built for clean execution with no trace filler.</p>
-            </div>
-            <div class="why-dashed-card">
-                <h4>💧 Premium Hydration</h4>
-                <p>Infused raw with pure Coconut Water Concentrate along with deep vital electrolytes (Sodium, Potassium, Magnesium) to establish system equilibrium.</p>
-            </div>
-            <div class="why-dashed-card">
-                <h4>🎯 Ultimate Usability</h4>
-                <p>Optimized specifically for intensive operations: gaming runs, structural corporate shifts, heavy study grinds, and raw power gym performance loops.</p>
-            </div>
+        <div class="matrix-item-card">
+            <div class="matrix-badge-top">HYDRATION</div>
+            <h3>COCONUT WATER BASE</h3>
+            <p>Infused directly with spray-dried raw Coconut Water Concentrate and system critical trace minerals for real fluid hydration balancing.</p>
         </div>
     </section>
 
-    <section class="nutrition-outer-box">
-        <div class="nutrition-panel-card">
-            <h3 class="nutrition-title">Nutrition Facts</h3>
-            <div class="nutrition-subrow">Serving size: 1 Can (250 mL)</div>
-            <div class="nutrition-calories-row">
-                <strong>Calories</strong>
+    <section class="nutrition-wrapper-flex">
+        <div class="panel-container-structural">
+            <h3 class="panel-header-main">Nutrition Facts</h3>
+            <div class="panel-row-standard">Serving size: 1 Can (250 mL)</div>
+            <div class="panel-row-calories">
+                <strong>Amount per serving<br>Calories</strong>
                 <strong>10</strong>
             </div>
-            <div class="nutrition-dv-header">% Daily Value *</div>
-            <div class="nutrition-data-line">
+            <div class="panel-row-dv-marker">% Daily Value *</div>
+            <div class="panel-data-line">
                 <span><strong>Total Fat</strong> 0g</span>
                 <strong>0%</strong>
             </div>
-            <div class="nutrition-data-line">
+            <div class="panel-data-line">
                 <span><strong>Sodium</strong> 5mg</span>
                 <strong>0%</strong>
             </div>
-            <div class="nutrition-data-line">
+            <div class="panel-data-line">
                 <span><strong>Total Carbohydrate</strong> 2g</span>
                 <strong>1%</strong>
             </div>
-            <div class="nutrition-data-line indent">
+            <div class="panel-data-line sub-indent">
                 <span>Total Sugars 1g</span>
                 <span></span>
             </div>
-            <div class="nutrition-data-line indent">
+            <div class="panel-data-line sub-indent">
                 <span>Includes 0g Added Sugars</span>
                 <strong>0%</strong>
             </div>
-            <div class="nutrition-data-line" style="border-bottom: 6px solid var(--black-ink);">
+            <div class="panel-data-line" style="border-bottom: 5px solid var(--ink-black);">
                 <span><strong>Protein</strong> 0g</span>
                 <strong>0%</strong>
             </div>
-            
-            <div class="nutrition-data-line">
+            <div class="panel-data-line">
                 <span>Niacin (Vit. B3) 16mg</span>
                 <span>100%</span>
             </div>
-            <div class="nutrition-data-line">
+            <div class="panel-data-line">
                 <span>Vitamin B6 1.7mg</span>
                 <span>100%</span>
             </div>
-            <div class="nutrition-data-line">
+            <div class="panel-data-line">
                 <span>Vitamin B12 2.4mcg</span>
                 <span>100%</span>
             </div>
-            <div class="nutrition-data-line" style="border-bottom: 4px solid var(--black-ink);">
+            <div class="panel-data-line" style="border-bottom: 3px solid var(--ink-black);">
                 <span>Pantothenic Acid (Vit. B5) 5mg</span>
                 <span>100%</span>
             </div>
-            <p class="nutrition-footer-note">
+            <p class="panel-footnote-text">
                 * The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.
+            </p>
+        </div>
+
+        <div class="textual-ingredients-card">
+            <h4>CLEAN INGREDIENTS. PERFORMANCE BASED.</h4>
+            <p>
+                <strong>INGREDIENTS:</strong> Carbonated Water, Coconut Water Concentrate, Natural Flavor, Green Coffee Bean Extract, L-Theanine, Citric Acid, Sodium Citrate, Potassium Citrate, Magnesium Citrate, Stevia Leaf Extract, Sea Salt, Niacinamide (Vitamin B3), Calcium D-Pantothenate (Vitamin B5), Pyridoxine Hydrochloride (Vitamin B6), Methylcobalamin (Vitamin B12).
+            </p>
+            <h4>PRODUCT ADVISORY NOTE</h4>
+            <p style="font-size: 0.85rem; color: #555; text-transform: uppercase;">
+                REFRIGERATE AFTER OPENING. DRINK RESPONSIBLY. NOT RECOMMENDED FOR CHILDREN, PREGNANT OR NURSING WOMEN, OR INDIVIDUALS SENSITIVE TO CAFFEINE.
             </p>
         </div>
     </section>
 
     <footer>
-        <div class="footer-logo-text">♥ KISSR ENERGY ♥</div>
-        <div class="footer-url">WWW.KISSRENERGY.COM</div>
-        <p class="footer-copyright">&copy; 2026 KISSR ENERGY. ALL ASSETS PRODUCED AND PACKAGED WITH SUPREME LOVE.</p>
+        <div class="footer-logo">♥ KISSR ENERGY ♥</div>
+        <div class="footer-domain">WWW.KISSRENERGY.COM</div>
+        <p class="footer-legal">&copy; 2026 KISSR ENERGY. COMPANION ASSETS CREATED WITH ULTIMATE PRECISION & LOVE.</p>
     </footer>
 
-    <script>
-        function triggerCanBooster() {
-            const can = document.getElementById('actualCan');
-            
-            // UI Visual Burst Effect on Click
-            can.style.transform = 'scale(1.1) rotate(-4deg)';
-            
-            setTimeout(() => {
-                can.style.transform = '';
-            }, 200);
-        }
-    </script>
 </body>
 </html>
