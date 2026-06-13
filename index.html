@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KISSR ENERGY</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,sans-serif;
+}
+
+body{
+background:linear-gradient(180deg,#fff,#ffd6e8);
+overflow-x:hidden;
+color:#111;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:50px;
+background:
+linear-gradient(rgba(255,255,255,.8),rgba(255,255,255,.8)),
+url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1200');
+background-size:cover;
+}
+
+.container{
+max-width:1200px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:50px;
+flex-wrap:wrap;
+}
+
+.left{
+flex:1;
+min-width:300px;
+}
+
+.logo{
+font-family:'Bebas Neue';
+font-size:120px;
+line-height:1;
+color:#ff4fa3;
+text-shadow:4px 4px #000;
+}
+
+.subtitle{
+font-size:30px;
+font-weight:700;
+margin-top:10px;
+}
+
+.desc{
+margin-top:20px;
+font-size:18px;
+max-width:500px;
+}
+
+.buttons{
+margin-top:30px;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:15px 30px;
+border:none;
+border-radius:999px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn-primary{
+background:#ff4fa3;
+color:white;
+}
+
+.btn-primary:hover{
+transform:translateY(-4px);
+}
+
+.btn-secondary{
+background:white;
+border:2px solid #ff4fa3;
+}
+
+.can{
+width:450px;
+max-width:100%;
+animation:float 3s ease-in-out infinite;
+filter:drop-shadow(0 20px 30px rgba(0,0,0,.25));
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-20px);}
+}
+
+.section{
+padding:100px 20px;
+max-width:1200px;
+margin:auto;
+}
+
+.title{
+font-family:'Bebas Neue';
+font-size:60px;
+text-align:center;
+margin-bottom:40px;
+color:#ff4fa3;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card h3{
+margin-bottom:10px;
+color:#ff4fa3;
+}
+
+.footer{
+padding:50px;
+background:#111;
+color:white;
+text-align:center;
+}
+
+.footer h2{
+font-family:'Bebas Neue';
+font-size:50px;
+color:#ff4fa3;
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+<div class="container">
+
+<div class="left">
+<h1 class="logo">KISSR</h1>
+<p class="subtitle">ENERGY FOR EVERY KISS 💖</p>
+
+<p class="desc">
+Clean Energy. Real Ingredients.
+Nothing Extra.
+Plant-Based Caffeine with smooth focus and great taste.
+</p>
+
+<div class="buttons">
+<button class="btn btn-primary">COMING SOON</button>
+<button class="btn btn-secondary">JOIN WAITLIST</button>
+</div>
+</div>
+
+<img src="YOUR_CAN_IMAGE.png" class="can">
+</div>
+</section>
+
+<section class="section">
+<h2 class="title">VANILLA SHAKE</h2>
+
+<div class="cards">
+<div class="card">
+<h3>⚡ Energy</h3>
+<p>100mg Plant-Based Caffeine</p>
+</div>
+
+<div class="card">
+<h3>🧠 Focus</h3>
+<p>L-Theanine for smooth mental performance.</p>
+</div>
+
+<div class="card">
+<h3>💖 Low Sugar</h3>
+<p>Clean flavor without excessive sugar.</p>
+</div>
+
+<div class="card">
+<h3>🌱 Natural</h3>
+<p>Natural ingredients and B vitamins.</p>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2 class="title">WHY KISSR?</h2>
+
+<div class="cards">
+<div class="card">
+<h3>Clean Ingredients</h3>
+<p>No unnecessary fillers.</p>
+</div>
+
+<div class="card">
+<h3>Hydration</h3>
+<p>Coconut water concentrate and electrolytes.</p>
+</div>
+
+<div class="card">
+<h3>Daily Energy</h3>
+<p>Built for gaming, work, school, and workouts.</p>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<h2>KISSR ENERGY</h2>
+<p>Energy For Every Kiss 💖</p>
+<br>
+<p>© 2026 KISSR Energy</p>
+</footer>
+
+</body>
+</html>
